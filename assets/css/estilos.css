@@ -1,0 +1,250 @@
+/* ChipeSoft · estilos del sitio de documentación.
+   Misma paleta y tipografías que el prototipo: azul ao po'i, dorado chipa. */
+
+:root {
+  --azul: #1c2a5e;
+  --azul2: #2f4390;
+  --oro: #f2b632;
+  --oro2: #fbe3a1;
+  --rojo: #c8372d;
+  --verde: #2c7a4b;
+  --fondo: #f4f6fb;
+  --card: #ffffff;
+  --tinta: #1b2140;
+  --gris: #6b7391;
+  --borde: #d9deed;
+  --r: 14px;
+}
+
+html[data-tema="dark"] {
+  --fondo: #0d1225;
+  --card: #161d38;
+  --tinta: #e9edff;
+  --gris: #a3acd1;
+  --borde: #2b3560;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 16px/1.65 Figtree, "Segoe UI", system-ui, sans-serif;
+  color: var(--tinta);
+  background: var(--fondo);
+}
+
+/* ---------- Encabezado ---------- */
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8rem 1.5rem;
+  color: #fff;
+  background:
+    radial-gradient(circle at 20px 20px, transparent 9px, rgba(242,182,50,.22) 10px, transparent 11px) 0 0 / 40px 40px,
+    var(--azul);
+  border-bottom: 5px solid var(--oro);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Bricolage Grotesque", Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.marca small { display: block; font: 400 .8rem Figtree, sans-serif; opacity: .8; }
+
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 9px solid var(--oro);
+  background: var(--azul);
+  box-shadow: inset 0 0 0 3px #fff3;
+}
+
+.top nav { display: flex; gap: .4rem; flex-wrap: wrap; margin-right: auto; margin-left: 1rem; }
+.top nav a {
+  padding: .4rem 1rem;
+  border-radius: 99px;
+  background: #ffffff1f;
+  color: #fff;
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+}
+.top nav a:hover { background: #ffffff38; }
+.top nav a.on { background: var(--oro); color: var(--azul); }
+
+.tbtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #ffffff55;
+  background: #ffffff1f;
+  color: #fff;
+  cursor: pointer;
+}
+.tbtn:hover { background: #ffffff38; }
+.tbtn svg {
+  width: 20px; height: 20px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+a:focus-visible, button:focus-visible { outline: 3px solid var(--oro); outline-offset: 2px; }
+
+
+/* ---------- Submenú de sección (trabajo práctico / ejercitarios) ---------- */
+
+.sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  padding: .55rem 1.5rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--borde);
+}
+.sub-t {
+  margin-right: .6rem;
+  font: 800 1rem "Bricolage Grotesque", Georgia, serif;
+  color: var(--azul);
+}
+html[data-tema="dark"] .sub-t { color: var(--oro2); }
+.sub a {
+  padding: .25rem .8rem;
+  border: 2px solid var(--borde);
+  border-radius: 99px;
+  color: var(--tinta);
+  font-size: .88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.sub a:hover { border-color: var(--oro); }
+.sub a.on { background: var(--azul); border-color: var(--azul); color: #fff; }
+html[data-tema="dark"] .sub a.on { background: var(--oro); border-color: var(--oro); color: var(--azul); }
+
+/* ---------- Contenido (lo que sale de los .md) ---------- */
+
+.contenido {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 2rem 2.4rem;
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--oro);
+  border-radius: var(--r);
+  box-shadow: 0 10px 30px #1c2a5e14;
+}
+
+.contenido > :first-child { margin-top: 0; }
+
+h1, h2, h3, h4 {
+  font-family: "Bricolage Grotesque", Georgia, serif;
+  line-height: 1.2;
+  margin: 2rem 0 .7rem;
+}
+h1 { font-size: 2.2rem; font-weight: 800; color: var(--azul); }
+h2 { font-size: 1.5rem; font-weight: 700; padding-left: .7rem; border-left: 6px solid var(--oro); }
+h3 { font-size: 1.15rem; font-weight: 700; color: var(--azul2); }
+html[data-tema="dark"] h1 { color: var(--oro2); }
+html[data-tema="dark"] h3 { color: #b7c3ff; }
+
+p, ul, ol { margin: .7rem 0; }
+li { margin: .25rem 0; }
+
+a { color: var(--azul2); font-weight: 700; text-underline-offset: 2px; }
+a:hover { color: var(--azul); text-decoration-color: var(--oro); text-decoration-thickness: 2px; }
+html[data-tema="dark"] a { color: #9fb0ff; }
+html[data-tema="dark"] a:hover { color: var(--oro2); }
+
+hr { border: 0; border-top: 2px dashed var(--borde); margin: 2rem 0; }
+
+/* Citas: las frases en cursiva debajo de cada título quedan como un aviso dorado */
+blockquote {
+  margin: 1rem 0;
+  padding: .6rem 1rem;
+  border-left: 5px solid var(--oro);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--fondo);
+  color: var(--gris);
+}
+blockquote p { margin: .3rem 0; }
+
+/* Tablas */
+.tabla {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+  border: 1px solid var(--borde);
+  border-radius: var(--r);
+}
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+th {
+  padding: .6rem .8rem;
+  text-align: left;
+  color: #fff;
+  background: var(--azul);
+  white-space: nowrap;
+}
+td { padding: .55rem .8rem; border-top: 1px solid var(--borde); vertical-align: top; }
+tbody tr:nth-child(even) td { background: var(--fondo); }
+html[data-tema="dark"] th { background: #232d63; }
+
+/* Imágenes y diagramas: fondo blanco para que se vean bien también en modo oscuro */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.2rem auto;
+  padding: .5rem;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--r);
+}
+
+code {
+  padding: .1rem .35rem;
+  border-radius: 6px;
+  background: var(--fondo);
+  font-size: .9em;
+}
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--r);
+  background: var(--fondo);
+}
+pre code { padding: 0; background: none; }
+
+sub, small { color: var(--gris); }
+
+/* ---------- Pie ---------- */
+
+.pie {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--gris);
+}
+
+/* ---------- Pantallas chicas ---------- */
+
+@media (max-width: 700px) {
+  .top { padding: .8rem 1rem; }
+  .sub { padding: .5rem 1rem; }
+  .top nav { margin-left: 0; order: 3; width: 100%; }
+  .contenido { margin: 1rem .6rem; padding: 1.2rem 1rem; }
+  h1 { font-size: 1.7rem; }
+}
