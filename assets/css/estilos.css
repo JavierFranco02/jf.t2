@@ -134,6 +134,11 @@ body {
 a:focus-visible, button:focus-visible { outline: 3px solid var(--oro); outline-offset: 2px; }
 
 
+.acciones { display: flex; align-items: center; gap: .5rem; }
+a.tbtn { text-decoration: none; }
+.tbtn svg { flex: none; }
+a.tbtn svg { fill: currentColor; stroke: none; width: 20px; height: 20px; }
+
 /* ---------- Contenido (lo que sale de los .md) ---------- */
 
 .contenido {
@@ -163,10 +168,10 @@ html[data-tema="dark"] h3 { color: #b7c3ff; }
 p, ul, ol { margin: .7rem 0; }
 li { margin: .25rem 0; }
 
-a { color: var(--azul2); font-weight: 700; text-underline-offset: 2px; }
-a:hover { color: var(--azul); text-decoration-color: var(--oro); text-decoration-thickness: 2px; }
-html[data-tema="dark"] a { color: #9fb0ff; }
-html[data-tema="dark"] a:hover { color: var(--oro2); }
+.contenido a { color: var(--azul2); font-weight: 700; text-underline-offset: 2px; }
+.contenido a:hover { color: var(--azul); text-decoration-color: var(--oro); text-decoration-thickness: 2px; }
+html[data-tema="dark"] .contenido a { color: #9fb0ff; }
+html[data-tema="dark"] .contenido a:hover { color: var(--oro2); }
 
 hr { border: 0; border-top: 2px dashed var(--borde); margin: 2rem 0; }
 
