@@ -5,7 +5,7 @@ lang: es
 # Dirección del sitio publicado (necesaria para que los enlaces y el CSS
 # funcionen en un sitio de proyecto como este).
 url: "https://javierfranco02.github.io"
-baseurl: "/Ingenieria_de_software_I"
+baseurl: "/jf.t2"
 
 plugins:
   - jekyll-relative-links
