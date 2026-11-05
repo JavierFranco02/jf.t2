@@ -71,18 +71,47 @@ body {
   box-shadow: inset 0 0 0 3px #fff3;
 }
 
-.top nav { display: flex; gap: .4rem; flex-wrap: wrap; margin-right: auto; margin-left: 1rem; }
-.top nav a {
+.menu { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; margin-right: auto; margin-left: 1rem; }
+.menu .item {
   padding: .4rem 1rem;
+  border: 0;
   border-radius: 99px;
   background: #ffffff1f;
   color: #fff;
+  font: 700 .95rem Figtree, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu .item:hover { background: #ffffff38; }
+.menu .item.on { background: var(--oro); color: var(--azul); }
+.flecha { font-size: .75em; margin-left: .15rem; }
+
+/* Desplegables */
+.drop { position: relative; }
+.drop-lista {
+  position: absolute;
+  top: calc(100% + .5rem);
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  padding: .4rem;
+  background: var(--card);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--oro);
+  border-radius: var(--r);
+  box-shadow: 0 12px 30px #1c2a5e33;
+}
+.drop-lista a {
+  display: block;
+  padding: .5rem .8rem;
+  border-radius: 10px;
+  color: var(--tinta);
   font-weight: 700;
-  font-size: .95rem;
   text-decoration: none;
 }
-.top nav a:hover { background: #ffffff38; }
-.top nav a.on { background: var(--oro); color: var(--azul); }
+.drop-lista a:hover { background: var(--fondo); }
+.drop-lista a.on { background: var(--oro2); color: var(--azul); }
+[hidden] { display: none !important; }
 
 .tbtn {
   width: 40px;
@@ -104,36 +133,6 @@ body {
 
 a:focus-visible, button:focus-visible { outline: 3px solid var(--oro); outline-offset: 2px; }
 
-
-/* ---------- Submenú de sección (trabajo práctico / ejercitarios) ---------- */
-
-.sub {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .4rem;
-  padding: .55rem 1.5rem;
-  background: var(--card);
-  border-bottom: 1px solid var(--borde);
-}
-.sub-t {
-  margin-right: .6rem;
-  font: 800 1rem "Bricolage Grotesque", Georgia, serif;
-  color: var(--azul);
-}
-html[data-tema="dark"] .sub-t { color: var(--oro2); }
-.sub a {
-  padding: .25rem .8rem;
-  border: 2px solid var(--borde);
-  border-radius: 99px;
-  color: var(--tinta);
-  font-size: .88rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-.sub a:hover { border-color: var(--oro); }
-.sub a.on { background: var(--azul); border-color: var(--azul); color: #fff; }
-html[data-tema="dark"] .sub a.on { background: var(--oro); border-color: var(--oro); color: var(--azul); }
 
 /* ---------- Contenido (lo que sale de los .md) ---------- */
 
@@ -243,8 +242,9 @@ sub, small { color: var(--gris); }
 
 @media (max-width: 700px) {
   .top { padding: .8rem 1rem; }
-  .sub { padding: .5rem 1rem; }
-  .top nav { margin-left: 0; order: 3; width: 100%; }
+  .menu { margin-left: 0; order: 3; width: 100%; position: relative; }
+  .drop { position: static; }
+  .drop-lista { left: 0; right: 0; min-width: 0; }
   .contenido { margin: 1rem .6rem; padding: 1.2rem 1rem; }
   h1 { font-size: 1.7rem; }
 }

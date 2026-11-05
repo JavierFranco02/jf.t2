@@ -20,42 +20,39 @@
   </script>
 </head>
 <body>
-  {% assign en_tp = false %}
-  {% assign en_ej = false %}
-  {% if page.url contains '/trabajo-practico/' %}{% assign en_tp = true %}{% endif %}
-  {% if page.url contains '/ejercitarios/' %}{% assign en_ej = true %}{% endif %}
-
   <header class="top">
     <a class="marca" href="{{ '/' | relative_url }}">
       <span class="logo"></span>
       <div>Ingeniería de Software I<small>4to B · T.M.</small></div>
     </a>
-    <nav>
-      <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}on{% endif %}">Inicio</a>
-      <a href="{{ '/#ejercitarios' | relative_url }}" class="{% if en_ej %}on{% endif %}">Ejercitarios</a>
-      <a href="{{ '/#trabajo-practico' | relative_url }}" class="{% if en_tp %}on{% endif %}">Trabajo práctico</a>
+
+    <nav class="menu" aria-label="Principal">
+      <a class="item {% if page.url == '/' %}on{% endif %}" href="{{ '/' | relative_url }}">Inicio</a>
+
+      <div class="drop">
+        <button type="button" class="item {% if page.url contains '/ejercitarios/' %}on{% endif %}" aria-haspopup="true" aria-expanded="false">Ejercitarios <span class="flecha">▾</span></button>
+        <div class="drop-lista" hidden>
+          <a href="{{ '/ejercitarios/unidad-01/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-01' %}on{% endif %}">Unidad 1</a>
+          <a href="{{ '/ejercitarios/unidad-02/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-02' %}on{% endif %}">Unidad 2</a>
+          <a href="{{ '/ejercitarios/unidad-03/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-03' %}on{% endif %}">Unidad 3</a>
+          <a href="{{ '/ejercitarios/unidad-04/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-04' %}on{% endif %}">Unidad 4</a>
+          {% comment %} Para agregar una unidad nueva, copiá una línea de arriba y cambiá el número. {% endcomment %}
+        </div>
+      </div>
+
+      <div class="drop">
+        <button type="button" class="item {% if page.url contains '/trabajo-practico/docs/' %}on{% endif %}" aria-haspopup="true" aria-expanded="false">Trabajo práctico <span class="flecha">▾</span></button>
+        <div class="drop-lista" hidden>
+          <a href="{{ '/trabajo-practico/docs/conceptualizacion.html' | relative_url }}" class="{% if page.url contains 'conceptualizacion' %}on{% endif %}">Conceptualización</a>
+          <a href="{{ '/trabajo-practico/docs/analisis.html' | relative_url }}" class="{% if page.url contains 'analisis' %}on{% endif %}">Análisis</a>
+          <a href="{{ '/trabajo-practico/docs/diseno.html' | relative_url }}" class="{% if page.url contains 'diseno' %}on{% endif %}">Diseño</a>
+          <a href="{{ '/trabajo-practico/prototipo-interfaz-interactiva/login.html' | relative_url }}" target="_blank" rel="noopener">Prototipo ↗</a>
+        </div>
+      </div>
     </nav>
+
     <button type="button" class="tbtn" id="btn-tema"></button>
   </header>
-
-  {% if en_tp %}
-  <nav class="sub" aria-label="Trabajo práctico">
-    <span class="sub-t">ChipeSoft</span>
-    <a href="{{ '/trabajo-practico/docs/conceptualizacion.html' | relative_url }}" class="{% if page.url contains 'conceptualizacion' %}on{% endif %}">Conceptualización</a>
-    <a href="{{ '/trabajo-practico/docs/analisis.html' | relative_url }}" class="{% if page.url contains 'analisis' %}on{% endif %}">Análisis</a>
-    <a href="{{ '/trabajo-practico/docs/diseno.html' | relative_url }}" class="{% if page.url contains 'diseno' %}on{% endif %}">Diseño</a>
-    <a href="{{ '/trabajo-practico/prototipo-interfaz-interactiva/login.html' | relative_url }}">Prototipo ↗</a>
-  </nav>
-  {% elsif en_ej %}
-  <nav class="sub" aria-label="Ejercitarios">
-    <span class="sub-t">Ejercitarios</span>
-    <a href="{{ '/ejercitarios/unidad-01/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-01' %}on{% endif %}">Unidad 1</a>
-    <a href="{{ '/ejercitarios/unidad-02/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-02' %}on{% endif %}">Unidad 2</a>
-    <a href="{{ '/ejercitarios/unidad-03/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-03' %}on{% endif %}">Unidad 3</a>
-    <a href="{{ '/ejercitarios/unidad-04/respuestas.html' | relative_url }}" class="{% if page.url contains 'unidad-04' %}on{% endif %}">Unidad 4</a>
-    {% comment %} Para agregar una unidad nueva, copiá una línea de arriba y cambiá el número. {% endcomment %}
-  </nav>
-  {% endif %}
 
   <main class="contenido">
     {{ content }}
@@ -92,6 +89,34 @@
       caja.className = 'tabla';
       tabla.replaceWith(caja);
       caja.appendChild(tabla);
+    });
+
+    /* Menús desplegables: se abren con clic; se cierran al hacer clic afuera o con Escape. */
+    var menus = document.querySelectorAll('.drop');
+
+    function cerrarMenus(excepto) {
+      menus.forEach(function (menu) {
+        if (menu === excepto) return;
+        menu.querySelector('.drop-lista').hidden = true;
+        menu.querySelector('button').setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    menus.forEach(function (menu) {
+      var boton = menu.querySelector('button');
+      var lista = menu.querySelector('.drop-lista');
+      boton.addEventListener('click', function (evento) {
+        evento.stopPropagation();
+        var abrir = lista.hidden;
+        cerrarMenus(menu);
+        lista.hidden = !abrir;
+        boton.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      });
+    });
+
+    document.addEventListener('click', function () { cerrarMenus(null); });
+    document.addEventListener('keydown', function (evento) {
+      if (evento.key === 'Escape') cerrarMenus(null);
     });
   </script>
 </body>
