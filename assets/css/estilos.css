@@ -59,7 +59,7 @@ html[data-tema="dark"] {
   --foco:            var(--oro);
   --tabla-cabecera:  #232d63;
   --lista-hover:     #232d63;
-  --activo-fondo:    var(--oro);
+  --activo-fondo:    var(--oro2);
   --activo-texto:    var(--azul);
 
   color-scheme: dark;
